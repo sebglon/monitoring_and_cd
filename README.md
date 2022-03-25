@@ -43,12 +43,12 @@ The fourth step is to implement monitoring and alerting to leverage the service 
 
 Those 4 steps only cover the continuous delivery. This process needs to be enriched with some other aspects like performance testing, auto-scaling, and financial management of service run to cover the product cost optimization and the activity growth.
 
-
+![RoadMap strategy](roadmap_strategy.svg)
 ## Technical Architecture
 ### Global Architecture
-
+![Global Architecture](CD_architecture.drawio.svg)
 ### Application Architecture
-
+![Application Architecture](app_scale_monitoring.drawio.svg)
 
 ## Components And Services choices
 | Component | Choice | Why |
