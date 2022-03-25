@@ -45,6 +45,10 @@ Those 4 steps only cover the continuous delivery. This process needs to be enric
 
 
 ## Technical Architecture
+### Global Architecture
+
+### Application Architecture
+
 
 ## Components And Services choices
 | Component | Choice | Why |
@@ -52,7 +56,7 @@ Those 4 steps only cover the continuous delivery. This process needs to be enric
 |container orchestration | Kubernetes managed| it's the main actor; available on all major cloud provider |
 | App templating | Kustomize | Because helm is probably overkill for simple and unique app deployment|
 | Continuous deployment | Arco CD | Because il's more thant a CD on there eco system |
-| Promotion et operation Pipeline | Argo Workflow | Mature project hosted by the CNCF; implement Multi-tenancy, many event provider |
+| Promotion et operation Pipeline | Argo Workflow | Mature project hosted by the CNCF; implement Multi-tenancy, many event providers. Can be coupled with monitoring, alerting, dev tools, ... |
 | Infrastructure deployment | AWS Controllers for Kubernetes (ACK) or Google Config Connector | Use Kubernetes CRD to deploy infrastructure resources; help dev teams to contribute without learning another techno like Terraform|
 | Monitoring | Datadog | Because it's a SaaS service that helps the platform team to be focused on providing dashboard, SLI, SLO, alerting. Easy to scale, resilient and secure. Where an ELK or Prometheus requires a full-time team to administrate, scale, and secure. |
 
