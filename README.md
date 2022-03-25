@@ -28,6 +28,8 @@ Those other processes can be introduced either at the beginning of the continuou
 Those concepts can be applied in the same way for product and service exposed to customers than for the platform infrastructure and service provided for the internal teams.
 
 ## Roadmap
+
+### Continous Delivery
 Delivering a service require to develop the feature.
 But it's not enough. A feature require to be deployed on a technical infrastructure and to interact with some techincal component or tiers services that are managed internal or externally.
 
@@ -44,6 +46,20 @@ The fourth step is to implement monitoring and alerting to leverage the service 
 Those 4 steps only cover the continuous delivery. This process needs to be enriched with some other aspects like performance testing, auto-scaling, and financial management of service run to cover the product cost optimization and the activity growth.
 
 ![RoadMap strategy](roadmap_strategy.svg)
+### Monitoring / Alerting
+The monitoring is the process to collect metrics and logs.
+Monitoring need to be implemented at multiple level:
+* Infrastructure component (error, usage, latency, ...)
+* Infrastructure service (for quotas and rate limiting usage, ...)
+* Application component (availability, storage, tracing, load)
+* Business service (usage, latency, availability, ...)
+
+The alerting is here to easily detect some known situation, issue or abnormal usage. Alert can be declined on 3 type:
+* Notification - it's the low level can be used by product team to track some usage or expected level but without direct impact on the SLO
+* Event - it can be used to trigger some operation pipeline automation like disk increase.
+* Pager - it's the highest level that requires an immediate intervention like a oncall with an incident opening and a postmortem
+
+
 ## Technical Architecture
 ### Global Architecture
 ![Global Architecture](CD_architecture.drawio.svg)
