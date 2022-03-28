@@ -2,9 +2,9 @@
 ## Context
 
 A monolithic application will be split progressively into multiple services.
-Each service can be managed and developed by independent development teams. The goal of this transition is to give flexibility on the deployment process and delivery calendar, to improve the feature scaling and growing, to secure services interaction, availability, and scalability to provide a qualitative service to customers.
+Each service can be managed and developed by independent development teams. This transition aims to give flexibility to the deployment process, delivery calendar, improve the feature scaling, growth, and secure services interaction, availability, and scalability to provide a qualitative service to customers.
 
-## Challeges
+## Challenges
 Delivering multi-services that can interact between them require stimulating some concepts to be safe and confident in the features delivery process, exploitation, and quality:
 
 * continuous service deployment
@@ -17,47 +17,47 @@ Delivering multi-services that can interact between them require stimulating som
 * chaos testing and resilience
 * autonomous and responsibilization of features teams
 * service performance, rate-limiting, and quotas management
-* production operation definition (storage resizing, )
+* production operation definition (storage resizing,... )
 * obsolescence management
 * data security
 * rollback management
 
-In this study, I only cover concepts related to service continuous delivery and service monitoring but other concepts can be introduced depending on the service criticality and teams maturity.
+In this study, I only cover continuous service delivery and monitoring concepts, but other concepts can be introduced depending on the service criticality and team maturity.
 Those other processes can be introduced either at the beginning of the continuous delivery implementation or just after in a continuous improvement process.
 
-Those concepts can be applied in the same way for product and service exposed to customers than for the platform infrastructure and service provided for the internal teams.
+Those concepts can be applied in the same way for products and services exposed to customers than for the platform infrastructure and service provided for the internal teams.
 
 ## Roadmap
 
 ### Continous Delivery
-Delivering a service require to develop the feature.
-But it's not enough. A feature require to be deployed on a technical infrastructure and to interact with some techincal component or tiers services that are managed internal or externally.
+Delivering a service requires developing the feature.
+But it's not enough. A feature must be deployed on technical infrastructure and interact with some technical component or tiers services that are managed internally or externally.
 
-The first challenge before automating the delivery is to secure the service integration on the infrastructure target. Continuous deployment testing will help to identify regressions and compatibility break between development and infrastructure.
+The first challenge before automating the delivery is to secure the service integration on the infrastructure target. Continuous deployment testing will help identify regressions and compatibility breaks between development and infrastructure.
 
-The second challenge is monitoring all component that contribute to deliver the service. This include the infrastructure part but also the application part with technical metering, event, logs but also business metrics to anticipate feature usage growth or incident detection
+The second challenge is monitoring all components that contribute to delivering the service. This includes the infrastructure part but also the application part with technical metering, event, logs but also business metrics to anticipate feature usage growth or incident detection
 
-The third step is to define and implement the Service Level Object to evaluate the quality of service expected. this will help the infrastructure and development teams to challenge the delivery quality and make the teams responsible for the positive or negative impacts on the quality of service perceived by customers. The service level objectification makes it possible to balance efforts between the development of new functionality and the reliability of the delivered service.
+The third step is defining and implementing the Service Level Object to evaluate the quality of service expected. This will help the infrastructure and development teams to challenge the delivery quality and make the teams responsible for the positive or negative impacts on the quality of service perceived by customers. The service level objectification makes it possible to balance efforts between the development of new functionality and the reliability of the delivered service.
 
-Now that the deployment is tested, the integration with tiers services is validated and the quality of service is measured, we can safely embrace the continuous delivery process.
+Now that the deployment is tested, the integration with tiers services is validated, and the quality of service is measured, we can safely embrace the continuous delivery process.
 
-The fourth step is to implement monitoring and alerting to leverage the service level objective. Monitoring need to be implemented at the infrastructure level, at the business level and at the service level.
+The fourth step is implementing monitoring and alerting to leverage the service level objective. Monitoring needs to be implemented at the infrastructure, feature, and service levels.
 
-Those 4 steps only cover the continuous delivery. This process needs to be enriched with some other aspects like performance testing, auto-scaling, and financial management of service run to cover the product cost optimization and the activity growth.
+Those four steps only cover the continuous delivery. This process needs to be enriched with other aspects like performance testing, auto-scaling, and financial management of service run to cover the product cost optimization and activity growth.
 
 ![RoadMap strategy](roadmap_strategy.svg)
 ### Monitoring / Alerting
-The monitoring is the process to collect metrics and logs.
-Monitoring need to be implemented at multiple level:
+Monitoring is the process of collecting metrics and logs.
+Monitoring needs to be implemented at multiple levels:
 * Infrastructure component (error, usage, latency, ...)
-* Infrastructure service (for quotas and rate limiting usage, ...)
+* Infrastructure service (for quotas and rate-limiting usage, ...)
 * Application component (availability, storage, tracing, load)
 * Business service (usage, latency, availability, ...)
 
-The alerting is here to easily detect some known situation, issue or abnormal usage. Alert can be declined on 3 type:
-* Notification - it's the low level can be used by product team to track some usage or expected level but without direct impact on the SLO
-* Event - it can be used to trigger some operation pipeline automation like disk increase.
-* Pager - it's the highest level that requires an immediate intervention like a oncall with an incident opening and a postmortem
+The alerting is here to quickly detect some known situation, issue or abnormal usage. Alert can be declined on three types:
+* Notification - it's the low level; the product team can use it to track some usage or expected level but without direct impact on the SLO
+* Event - it can trigger some operation pipeline automation like disk increase.
+* Pager - it's the highest level that requires an immediate intervention like an on-call with an incident opening and a postmortem
 
 
 ## Technical Architecture
@@ -69,10 +69,10 @@ The alerting is here to easily detect some known situation, issue or abnormal us
 ## Components And Services choices
 | Component | Choice | Why |
 |-----------|--------|----------|
-|container orchestration | Kubernetes managed| it's the main actor; available on all major cloud provider |
-| App templating | Kustomize | Because helm is probably overkill for simple and unique app deployment|
-| Continuous deployment | Arco CD | Because il's more thant a CD on there eco system |
+|container orchestration | Kubernetes managed| it's the leading actor; available on all major cloud providers |
+| App templating | Kustomize | Because helm is probably overkilling for unique and straightforward app deployment|
+| Continuous deployment | Arco CD | Because il's more than a CD on their ecosystem |
 | Promotion et operation Pipeline | Argo Workflow | Mature project hosted by the CNCF; implement Multi-tenancy, many event providers. Can be coupled with monitoring, alerting, dev tools, ... |
 | Infrastructure deployment | AWS Controllers for Kubernetes (ACK) or Google Config Connector | Use Kubernetes CRD to deploy infrastructure resources; help dev teams to contribute without learning another techno like Terraform|
-| Monitoring | Datadog | Because it's a SaaS service that helps the platform team to be focused on providing dashboard, SLI, SLO, alerting. Easy to scale, resilient and secure. Where an ELK or Prometheus requires a full-time team to administrate, scale, and secure. |
+| Monitoring | Datadog | Because it's a SaaS service that allows the platform team to be focused on providing dashboard, SLI, SLO, alerting. Easy to scale, resilient and secure. Where an ELK or Prometheus requires a full-time team to administrate, scale, and secure. |
 
